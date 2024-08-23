@@ -23,9 +23,11 @@
                         <thead class="thead-dark" style="background-color: #343a40; color: #fff;">
                             <tr>
                                 <th>No.</th>
+                                <th>Foto</th>
                                 <th>Nombres</th>
                                 <th>Primer Apellido</th>
                                 <th>Segundo Apellido</th>
+                                <th>Correo Electronico</th>
                                 <th>Rol</th>
                                 <th>Modificar</th>
                                 <th>Desabilitar</th>
@@ -39,9 +41,27 @@
                             ?>
                             <tr>
                                 <td><?php echo $contador; ?></td>
+                                <td>
+                                    <?php 
+                                    $foto=$row->foto;
+                                    if($foto=="")
+                                    {
+                                        ?>
+                                        <img src="<?php echo base_url(); ?>/uploads/usuarios/perfil.jpg" width="100">
+                                    <?php
+                                    }
+                                    else
+                                    {
+                                        ?>
+                                        <img src="<?php echo base_url(); ?>/uploads/usuarios/<?php echo $foto; ?>" width="100">
+                                        <?php
+                                    } 
+                                    ?>
+                                </td>
                                 <td><?php echo $row->nombres; ?></td>
                                 <td><?php echo $row->primerApellido; ?></td>
                                 <td><?php echo $row->segundoApellido; ?></td>
+                                <td><?php echo $row->correoElectronico; ?></td>
                                 <td><?php echo $row->rol; ?></td>
                                 <td>
                                     <?php echo form_open_multipart("usuario/modificar"); ?>

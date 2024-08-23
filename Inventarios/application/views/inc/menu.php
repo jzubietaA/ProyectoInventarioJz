@@ -14,7 +14,7 @@
 							<div class="mdl-tooltip" for="btn-exit">LogOut</div>
 						</li>
                 
-                <li class="text-condensedLight noLink"><small>User Name</small></li>
+                <li class="text-condensedLight noLink"><small><?php echo $this->session->userdata('acceso'); ?></small></li>
                 <li class="noLink">
                     <figure>
                         <img src="<?php echo base_url(); ?>master/assets/img/avatar-male.png" alt="Avatar" class="img-responsive">

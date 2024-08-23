@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Administrators</title>
-  <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" href="<?php echo base_url(); ?>master/css/normalize.css">
 	<link rel="stylesheet" href="<?php echo base_url(); ?>master/css/sweetalert2.css">
 	<link rel="stylesheet" href="<?php echo base_url(); ?>master/css/material.min.css">
@@ -24,70 +24,11 @@
 		<div class="full-width container-notifications-bg btn-Notification"></div>
 	    <section class="NotificationArea">
 	        <div class="full-width text-center NotificationArea-title tittles">Notifications <i class="zmdi zmdi-close btn-Notification"></i></div>
-	        <a href="#" class="Notification" id="notifation-unread-1">
-	            <div class="Notification-icon"><i class="zmdi zmdi-accounts-alt bg-info"></i></div>
-	            <div class="Notification-text">
-	                <p>
-	                    <i class="zmdi zmdi-circle"></i>
-	                    <strong>New User Registration</strong> 
-	                    <br>
-	                    <small>Just Now</small>
-	                </p>
-	            </div>
-	        	<div class="mdl-tooltip mdl-tooltip--left" for="notifation-unread-1">Notification as UnRead</div> 
-	        </a>
-	        <a href="#" class="Notification" id="notifation-read-1">
-	            <div class="Notification-icon"><i class="zmdi zmdi-cloud-download bg-primary"></i></div>
-	            <div class="Notification-text">
-	                <p>
-	                    <i class="zmdi zmdi-circle-o"></i>
-	                    <strong>New Updates</strong> 
-	                    <br>
-	                    <small>30 Mins Ago</small>
-	                </p>
-	            </div>
-	            <div class="mdl-tooltip mdl-tooltip--left" for="notifation-read-1">Notification as Read</div>
-	        </a>
-	        <a href="#" class="Notification" id="notifation-unread-2">
-	            <div class="Notification-icon"><i class="zmdi zmdi-upload bg-success"></i></div>
-	            <div class="Notification-text">
-	                <p>
-	                    <i class="zmdi zmdi-circle"></i>
-	                    <strong>Archive uploaded</strong> 
-	                    <br>
-	                    <small>31 Mins Ago</small>
-	                </p>
-	            </div>
-	            <div class="mdl-tooltip mdl-tooltip--left" for="notifation-unread-2">Notification as UnRead</div>
-	        </a> 
-	        <a href="#" class="Notification" id="notifation-read-2">
-	            <div class="Notification-icon"><i class="zmdi zmdi-mail-send bg-danger"></i></div>
-	            <div class="Notification-text">
-	                <p>
-	                    <i class="zmdi zmdi-circle-o"></i>
-	                    <strong>New Mail</strong> 
-	                    <br>
-	                    <small>37 Mins Ago</small>
-	                </p>
-	            </div>
-	            <div class="mdl-tooltip mdl-tooltip--left" for="notifation-read-2">Notification as Read</div>
-	        </a>
-	        <a href="#" class="Notification" id="notifation-read-3">
-	            <div class="Notification-icon"><i class="zmdi zmdi-folder bg-primary"></i></div>
-	            <div class="Notification-text">
-	                <p>
-	                    <i class="zmdi zmdi-circle-o"></i>
-	                    <strong>Folder delete</strong> 
-	                    <br>
-	                    <small>1 hours Ago</small>
-	                </p>
-	            </div>
-	            <div class="mdl-tooltip mdl-tooltip--left" for="notifation-read-3">Notification as Read</div>
-	        </a>  
+	        <!-- Notifications here -->
 	    </section>
 	</section>
 	<!-- navLateral -->
-  <section class="full-width navLateral">
+    <section class="full-width navLateral">
 		<div class="full-width navLateral-bg btn-menu"></div>
 		<div class="full-width navLateral-body">
 			<div class="full-width navLateral-body-logo text-center tittles">
@@ -99,15 +40,16 @@
 				</div>
 				<figcaption>
 					<span>
-						Full Name Admin<br>
-						<small>Admin</small>
+						<br>
+						<small><?php echo $this->session->userdata('acceso'); ?><br>
+      						<?php echo $this->session->userdata('rol'); ?></small>
 					</span>
 				</figcaption>
 			</figure>
 			<nav class="full-width">
 				<ul class="full-width list-unstyle menu-principal">
 					<li class="full-width">
-						<a href="home.html" class="full-width">
+						<a href="<?php echo base_url(); ?>index.php/usuario/menu" class="full-width">
 							<div class="navLateral-body-cl">
 								<i class="zmdi zmdi-view-dashboard"></i>
 							</div>
@@ -171,8 +113,9 @@
 						</ul>
 					</li>
 					<li class="full-width divider-menu-h"></li>
+					
+					<?php if ($this->session->userdata('rol') === 'ADMINISTRADOR'): ?>
 					<li class="full-width">
-						
 						<a href="#!" class="full-width btn-subMenu">
 							<div class="navLateral-body-cl">
 								<i class="zmdi zmdi-face"></i>
@@ -183,16 +126,16 @@
 							<span class="zmdi zmdi-chevron-left"></span>
 						</a>
 						<ul class="full-width menu-principal sub-menu-options">
-						<li class="full-width">
-   						 <a href="<?php echo base_url(); ?>index.php/usuario/listausuario" class="full-width">
-        					<div class="navLateral-body-cl">
-            					<i class="zmdi zmdi-account"></i>
-        					</div>
-       							 <div class="navLateral-body-cr">
-            						ADMINISTRADOR
-        					</div>
-    					</a>
-						</li>
+							<li class="full-width">
+								<a href="<?php echo base_url(); ?>index.php/usuario/listausuario" class="full-width">
+									<div class="navLateral-body-cl">
+										<i class="zmdi zmdi-account"></i>
+									</div>
+									<div class="navLateral-body-cr">
+										ADMINISTRADOR
+									</div>
+								</a>
+							</li>
 							<li class="full-width">
 								<a href="client.html" class="full-width">
 									<div class="navLateral-body-cl">
@@ -205,6 +148,8 @@
 							</li>
 						</ul>
 					</li>
+					<?php endif; ?>
+					
 					<li class="full-width divider-menu-h"></li>
 					<li class="full-width">
 						<a href="products.html" class="full-width">

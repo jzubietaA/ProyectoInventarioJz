@@ -65,8 +65,9 @@ class Usuario extends CI_Controller {
         $data['nombres'] = strtoupper($_POST['nombres']);
         $data['primerApellido'] = strtoupper($_POST['primerApellido']);
         $data['segundoApellido'] = strtoupper($_POST['segundoApellido']);
-        $data['acceso'] = strtoupper($_POST['acceso']);
-        $data['contrasenia'] = strtoupper(md5($_POST['contrasenia']));
+        $data['correoElectronico'] = ($_POST['correoElectronico']);
+        $data['acceso'] = ($_POST['acceso']);
+        $data['contrasenia'] =(md5($_POST['contrasenia']));
         $data['rol'] = strtoupper($_POST['rol']);
 
         $this->usuario_model->agregarusuario($data);
@@ -136,8 +137,8 @@ class Usuario extends CI_Controller {
 		$data['nombres']=strtoupper($_POST['nombres']);
 		$data['primerApellido']=strtoupper($_POST['primerApellido']);
 		$data['segundoApellido']=strtoupper($_POST['segundoApellido']);
-        $data['acceso']=strtoupper($_POST['acceso']);
-        $data['contrasenia']=strtoupper($_POST['contrasenia']);
+        $data['acceso']=($_POST['acceso']);
+        $data['contrasenia']=($_POST['contrasenia']);
 		$data['rol']=strtoupper($_POST['rol']);
 
 		$this->usuario_model->modificarusuario($idUsuario,$data);
