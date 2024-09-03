@@ -11,15 +11,20 @@
 <body>
     <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
         <div class="mdl-tabs__tab-bar">
-            <a href="#tabNewAdmin" class="mdl-tabs__tab is-active">NEW</a>
+            <a href="#tabNewAdmin" class="mdl-tabs__tab is-active">Nuevo</a>
             
         </div>
+            <?php
+            $atributos=array('class'=>'form-control','id'=>'formulario');
+            echo form_open_multipart('usuario/agregarbd',$atributos); 
+            ?>
+
         <div class="mdl-tabs__panel is-active" id="tabNewAdmin">
             <div class="mdl-grid">
                 <div class="mdl-cell mdl-cell--12-col">
                     <div class="full-width panel mdl-shadow--2dp">
                         <div class="full-width panel-tittle bg-primary text-center tittles">
-                            New Administrator
+                            Nuevo Usuario
                         </div>
                         <div class="full-width panel-content">
                             <?php echo form_open_multipart("usuario/agregarbd"); ?>

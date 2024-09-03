@@ -152,7 +152,7 @@
 					
 					<li class="full-width divider-menu-h"></li>
 					<li class="full-width">
-						<a href="products.html" class="full-width">
+					<a href="<?php echo base_url(); ?>index.php/producto/listaproducto" class="full-width">
 							<div class="navLateral-body-cl">
 								<i class="zmdi zmdi-washing-machine"></i>
 							</div>
@@ -163,7 +163,7 @@
 					</li>
 					<li class="full-width divider-menu-h"></li>
 					<li class="full-width">
-						<a href="sales.html" class="full-width">
+						<a href="<?php echo base_url(); ?>index.php/ventas/detalleVenta" class="full-width">
 							<div class="navLateral-body-cl">
 								<i class="zmdi zmdi-shopping-cart"></i>
 							</div>

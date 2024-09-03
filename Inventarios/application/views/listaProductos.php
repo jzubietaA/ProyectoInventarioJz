@@ -1,23 +1,19 @@
-<div class="mdl-tabs__panel" id="tabListAdmin">
+<div class="mdl-tabs__panel" id="tabListProduct">
     <div class="mdl-grid">
         <div class="mdl-cell mdl-cell--12-col">
             <div class="full-width panel mdl-shadow--2dp">
                 <div class="full-width panel-tittle bg-success text-center tittles">
-                    <h1 style="font-size: 30px; padding: 8px; color: #fff;">Lista de Usuario</h1>
+                    <h1 style="font-size: 30px; padding: 8px; color: #fff;">Lista de Productos</h1>
                 </div>
                 <br>
-
-                <h1>Lista de estudiantes habilitados</h1>
-     
                 <div class="text-center" style="margin-bottom: 25px;">
-                    <a href="<?php echo base_url(); ?>index.php/usuario/logout" class="btn btn-primary mx-2">
-                        Cerrar sesión
+                    <a href="<?php echo base_url(); ?>index.php/producto/agregarproducto" class="btn btn-primary mx-2">
+                        Agregar Producto
                     </a>
-                    <a href="<?php echo base_url(); ?>index.php/usuario/deshabilitados" class="btn btn-warning mx-2">
-                        Ver Deshabilitados
-                    </a>
-                    <a href="<?php echo base_url(); ?>index.php/usuario/agregarusuario" class="btn btn-primary mx-2">
-                        Agregar Usuario
+                </div>
+                <div class="text-left" style="margin-bottom: 25px;">
+                    <a href="<?php echo base_url(); ?>index.php/categorias/lista_categorias" class="btn btn-primary mx-2">
+                        lista por Categorias
                     </a>
                 </div>
                 <div class="table-responsive">
@@ -26,64 +22,62 @@
                             <tr>
                                 <th>No.</th>
                                 <th>Foto</th>
-                                <th>Nombres</th>
-                                <th>Primer Apellido</th>
-                                <th>Segundo Apellido</th>
-                                <th>Correo Electronico</th>
-                                <th>Rol</th>
+                                <th>Nombre</th>
+                                <th>Descripción</th>
+                                <th>Precio</th>
+                                <th>Cantidad</th>
+                                <th>Categoría</th>
                                 <th>Modificar</th>
-                                <th>Desabilitar</th>
+                                <th>Deshabilitar</th>
                                 <th>Eliminar</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php
                             $contador = 1;
-                            foreach($usuario->result() as $row) {
+                            if ($productos) {  // Verificar si $productos no es null
+                                foreach($productos->result() as $row) {
                             ?>
                             <tr>
                                 <td><?php echo $contador; ?></td>
                                 <td>
                                     <?php 
-                                    $foto=$row->foto;
-                                    if($foto=="")
-                                    {
+                                    $foto = $row->foto;
+                                    if ($foto == "") {
                                         ?>
-                                        <img src="<?php echo base_url(); ?>/uploads/perfil.jpg" width="50px">
+                                        <img src="<?php echo base_url(); ?>/uploads/productos/martillo.jpg" width="50px">
                                     <?php
-                                    }
-                                    else
-                                    {
+                                    } else {
                                         ?>
-                                        <img src="<?php echo base_url(); ?>/uploads/usuarios/<?php echo $foto; ?>" width="50px">
-                                        <?php
+                                        <img src="<?php echo base_url(); ?>/uploads/productos/<?php echo $foto; ?>" width="50px">
+                                    <?php
                                     } 
                                     ?>
                                 </td>
-                                <td><?php echo $row->nombres; ?></td>
-                                <td><?php echo $row->primerApellido; ?></td>
-                                <td><?php echo $row->segundoApellido; ?></td>
-                                <td><?php echo $row->correoElectronico; ?></td>
-                                <td><?php echo $row->rol; ?></td>
+                                <td><?php echo $row->nombre; ?></td>
+                                <td><?php echo $row->descripcion; ?></td>
+                                <td><?php echo $row->precio; ?></td>
+                                <td><?php echo $row->stock; ?></td>
+                                <td><?php echo $row->categoria_id; ?></td>
                                 <td>
-                                    <?php echo form_open_multipart("usuario/modificar"); ?>
-                                    <input type="hidden" name="idusuario" value="<?php echo $row->idUsuario; ?>">
+                                    <?php echo form_open_multipart("producto/modificar"); ?>
+                                    <input type="hidden" name="id" value="<?php echo $row->id; ?>">
                                     <button type="submit" class="btn btn-success btn-sm">
                                         <i class="zmdi zmdi-edit"></i> Modificar
                                     </button>
                                     <?php echo form_close(); ?>
                                 </td>
                                 <td>
-                                    <?php echo form_open_multipart("usuario/deshabilitarbd"); ?>
-                                    <input type="hidden" name="idusuario" value="<?php echo $row->idUsuario; ?>">
+                                    <?php echo form_open_multipart("producto/deshabilitarbd"); ?>
+                                    <input type="hidden" name="id" value="<?php echo $row->id; ?>">
                                     <button type="submit" class="btn btn-warning btn-sm">
                                         <i class="zmdi zmdi-delete"></i> Deshabilitar
                                     </button>
                                     <?php echo form_close(); ?>
                                 </td>
                                 <td>
-                                    <?php echo form_open_multipart("usuario/eliminarbd"); ?>
-                                    <input type="hidden" name="idusuario" value="<?php echo $row->idUsuario; ?>">
+                                    <?php echo form_open_multipart("producto/eliminarbd"); ?>
+                                    <input type="hidden" name="id" value="<?php echo $row->id; ?>">
                                     <button type="submit" class="btn btn-danger btn-sm">
                                         <i class="zmdi zmdi-delete"></i> Eliminar
                                     </button>
@@ -91,7 +85,10 @@
                                 </td>
                             </tr>
                             <?php
-                            $contador++;
+                                $contador++;
+                                }
+                            } else {
+                                echo "<tr><td colspan='10' class='text-center'>No hay productos disponibles.</td></tr>";
                             }
                             ?>
                         </tbody>
@@ -101,8 +98,3 @@
         </div>
     </div>
 </div>
-
-
-
-
-

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modificar Estudiante</title>
+    <title>Modificar Usuario</title>
     <!-- Incluye los archivos CSS y JS necesarios para Material Design Lite -->
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
     <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
@@ -13,6 +13,9 @@
         <div class="mdl-tabs__tab-bar">
             <a href="#tabModifyStudent" class="mdl-tabs__tab is-active">Modificar Usuario</a>
         </div>
+        <?php
+            
+            ?>
         <div class="mdl-tabs__panel is-active" id="tabModifyStudent">
             <div class="mdl-grid">
                 <div class="mdl-cell mdl-cell--12-col">
@@ -27,7 +30,7 @@
                             ?>
                             <div class="mdl-grid">
                                 <div class="mdl-cell mdl-cell--12-col">
-                                    <legend class="text-condensedLight"><i class="zmdi zmdi-border-color"></i> &nbsp; DATOS DEL Usuario</legend><br>
+                                    <legend class="text-condensedLight"><i class="zmdi zmdi-border-color"></i> &nbsp; DATOS DEL USUARIO</legend><br>
                                 </div>
 
                                 <input type="hidden" name="idUsuario" value="<?php echo $row->idUsuario; ?>">
@@ -83,6 +86,12 @@
                                         <?php echo form_error('rol'); ?>
                                     </div>
                                 </div>
+
+                                <div class="mdl-cell mdl-cell--12-col">
+                                    <label>Subir Foto</label><br>  
+                                    <input type="file" name="userfile"><br>
+                                </div>
+
                                 <div class="mdl-cell mdl-cell--12-col">
                                     <p class="text-center">
                                         <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored bg-primary" id="btn-modifyStudent">
@@ -90,7 +99,7 @@
                                         </button>
                                         <div class="mdl-tooltip" for="btn-modifyStudent">Modificar Usuario</div>
                                     </p>
-                                </div>
+                                </div>                                   
                             </div>
                             <?php
                                 echo form_close();

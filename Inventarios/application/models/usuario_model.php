@@ -8,6 +8,7 @@ class Usuario_model extends CI_Model {
 		$this->db->where('acceso',$acceso);
 		$this->db->where('contrasenia',$contrasenia);
 		return $this->db->get(); //devuelve el resultado
+		
 	}
 	public function agregarusuario($data)
 	{
@@ -44,6 +45,7 @@ class Usuario_model extends CI_Model {
 		$this->db->where('idusuario',$idUsuario);
 		$this->db->delete('usuarios');
 	}
+	
 }
 ?>
 

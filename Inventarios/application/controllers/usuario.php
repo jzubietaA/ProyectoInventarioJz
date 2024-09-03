@@ -53,6 +53,7 @@ class Usuario extends CI_Controller {
             redirect('usuario/index', 'refresh');
         }
     }
+    
 
     public function logout() 
     {
@@ -60,19 +61,78 @@ class Usuario extends CI_Controller {
         redirect('usuario/index', 'refresh');
     }
 
-    public function agregarbd()
-    {
-        $data['nombres'] = strtoupper($_POST['nombres']);
-        $data['primerApellido'] = strtoupper($_POST['primerApellido']);
-        $data['segundoApellido'] = strtoupper($_POST['segundoApellido']);
-        $data['correoElectronico'] = ($_POST['correoElectronico']);
-        $data['acceso'] = ($_POST['acceso']);
-        $data['contrasenia'] =(md5($_POST['contrasenia']));
-        $data['rol'] = strtoupper($_POST['rol']);
+	public function agregarbd()
+	{
+		$this->load->library('form_validation');
 
-        $this->usuario_model->agregarusuario($data);
-        redirect('usuario/listausuario', 'refresh');
-    }
+		// Reglas de validación para los nombres
+		$this->form_validation->set_rules('nombres', 'Nombre de usuario', 'required|min_length[4]|max_length[12]|regex_match[/^[a-zA-Z\s]+$/]', array(
+			'required' => 'Se requiere el nombre',
+			'min_length' => 'Por lo menos 4 caracteres',
+			'max_length' => 'Máximo 12 caracteres',
+			'regex_match' => 'El nombre solo puede contener letras y espacios'
+		));
+
+		// Reglas de validación para el primer apellido
+		$this->form_validation->set_rules('primerApellido', 'Primer Apellido', 'required|min_length[4]|max_length[50]|regex_match[/^[a-zA-Z\s]+$/]', array(
+			'required' => 'Se requiere el primer apellido',
+			'min_length' => 'Por lo menos 4 caracteres',
+			'max_length' => 'Máximo 50 caracteres',
+			'regex_match' => 'El primer apellido solo puede contener letras y espacios'
+		));
+
+		// Reglas de validación para el segundo apellido
+		$this->form_validation->set_rules('segundoApellido', 'Segundo Apellido', 'required|min_length[4]|max_length[50]|regex_match[/^[a-zA-Z\s]+$/]', array(
+			'required' => 'Se requiere el segundo apellido',
+			'min_length' => 'Por lo menos 4 caracteres',
+			'max_length' => 'Máximo 50 caracteres',
+			'regex_match' => 'El segundo apellido solo puede contener letras y espacios'
+		));
+
+		// Reglas de validación para el correo electrónico
+		$this->form_validation->set_rules('correoElectronico', 'Correo Electrónico', 'required|valid_email', array(
+			'required' => 'Se requiere el correo electrónico',
+			'valid_email' => 'El correo electrónico no es válido'
+		));
+
+		// Reglas de validación para el campo de acceso
+		$this->form_validation->set_rules('acceso', 'Acceso', 'required|min_length[3]|max_length[20]', array(
+			'required' => 'Se requiere el acceso',
+			'min_length' => 'Por lo menos 3 caracteres',
+			'max_length' => 'Máximo 20 caracteres'
+		));
+
+		// Reglas de validación para la contraseña
+		$this->form_validation->set_rules('contrasenia', 'Contraseña', 'required|min_length[6]', array(
+			'required' => 'Se requiere la contraseña',
+			'min_length' => 'La contraseña debe tener al menos 6 caracteres'
+		));
+
+		// Reglas de validación para el rol
+		$this->form_validation->set_rules('rol', 'Rol', 'required', array(
+			'required' => 'Se requiere seleccionar un rol'
+		));
+
+		if ($this->form_validation->run() == FALSE) {
+			// Cargar vistas si la validación falla
+			$this->load->view('inc/head');
+			$this->load->view('inc/menu');
+			$this->load->view('user_add');  // Asegúrate de que esta vista existe
+			$this->load->view('inc/footer');
+		} else{
+			// Procesar los datos válidos
+			$data['nombres'] = strtoupper($_POST['nombres']);
+        	$data['primerApellido'] = strtoupper($_POST['primerApellido']);
+        	$data['segundoApellido'] = strtoupper($_POST['segundoApellido']);
+        	$data['correoElectronico'] = ($_POST['correoElectronico']);
+        	$data['acceso'] = ($_POST['acceso']);
+        	$data['contrasenia'] =(md5($_POST['contrasenia']));
+        	$data['rol'] = strtoupper($_POST['rol']);
+
+        	$this->usuario_model->agregarusuario($data);
+        	redirect('usuario/listausuario', 'refresh');
+		}
+	}
     public function listausuario()
 	{
 		if($this->session->userdata('acceso'))
@@ -133,6 +193,7 @@ class Usuario extends CI_Controller {
 
 	public function modificarbd()
 	{
+		
 		$idUsuario=$_POST['idUsuario'];
 		$data['nombres']=strtoupper($_POST['nombres']);
 		$data['primerApellido']=strtoupper($_POST['primerApellido']);
@@ -140,9 +201,31 @@ class Usuario extends CI_Controller {
         $data['acceso']=($_POST['acceso']);
         $data['contrasenia']=($_POST['contrasenia']);
 		$data['rol']=strtoupper($_POST['rol']);
+        $nombrearchivo=$idUsuario.".jpg";
+
+        $config['upload_path']='./uploads/usuarios/';
+		$config['file_name']=$nombrearchivo;
+		$direccion="./uploads/usuarios/".$nombrearchivo;
+		if(file_exists($direccion))
+		{
+			unlink($direccion);
+		}
+		$config['allowed_types']='jpg';
+		$this->load->library('upload',$config);
+
+		if(!$this->upload->do_upload())
+		{
+			$data['error']=$this->upload->display_errors();
+		}
+		else
+		{
+			$data['foto']=$nombrearchivo;
+		}
 
 		$this->usuario_model->modificarusuario($idUsuario,$data);
 		redirect('usuario/listausuario','refresh');
+        $this->upload->data();
+        
 	}
     public function eliminarbd()
 	{
@@ -150,6 +233,7 @@ class Usuario extends CI_Controller {
 		$this->usuario_model->eliminarusuario($idUsuario);
 		redirect('usuario/listausuario','refresh');
 	}
+	
 
 }
 ?>
