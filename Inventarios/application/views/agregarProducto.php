@@ -45,11 +45,12 @@
                         <div class="form-group">
                             <label for="categoria_id">Categoría:</label>
                             <select name="categoria_id" id="categoria_id" class="form-control" required>
-                                <option value="">Seleccionar categoría</option>
-                                <?php foreach ($categorias as $categoria): ?>
-                                    <option value="<?php echo $categoria->id; ?>"><?php echo $categoria->nombre; ?></option>
-                                <?php endforeach; ?>
-                            </select>
+                            <option value="">Seleccionar categoría</option>
+                            <?php foreach ($categorias as $categoria): ?>
+                                <option value="<?php echo $categoria->idcategoria; ?>"><?php echo $categoria->nombre; ?></option>
+                            <?php endforeach; ?>
+                        </select>
+
                         </div>
                     </div>
 

@@ -81,7 +81,7 @@
 								</a>
 							</li>
 							<li class="full-width">
-								<a href="providers.html" class="full-width">
+								<a href="<?php echo base_url(); ?>index.php/proveedores/listaproveedores"  class="full-width">
 									<div class="navLateral-body-cl">
 										<i class="zmdi zmdi-truck"></i>
 									</div>
@@ -101,7 +101,7 @@
 								</a>
 							</li>
 							<li class="full-width">
-								<a href="categories.html" class="full-width">
+								<a href="<?php echo base_url(); ?>index.php/categorias/lista_categorias" class="full-width">
 									<div class="navLateral-body-cl">
 										<i class="zmdi zmdi-label"></i>
 									</div>
@@ -161,20 +161,44 @@
 							</div>
 						</a>
 					</li>
+
 					<li class="full-width divider-menu-h"></li>
 					<li class="full-width">
-						<a href="<?php echo base_url(); ?>index.php/ventas/detalleVenta" class="full-width">
+						<a href="#!" class="full-width btn-subMenu">
 							<div class="navLateral-body-cl">
-								<i class="zmdi zmdi-shopping-cart"></i>
+								<i class="zmdi zmdi-case"></i>
 							</div>
 							<div class="navLateral-body-cr">
 								VENTAS
 							</div>
+							<span class="zmdi zmdi-chevron-left"></span>
 						</a>
+						<ul class="full-width menu-principal sub-menu-options">
+							<li class="full-width">
+								<a href="<?php echo base_url(); ?>index.php/ventas/agregarVenta" class="full-width">
+									<div class="navLateral-body-cl">
+										<i class="zmdi zmdi-card"></i>
+									</div>
+									<div class="navLateral-body-cr">
+										NUEVA VENTA
+									</div>
+								</a>
+							</li>
+							<li class="full-width">
+								<a href="<?php echo base_url(); ?>index.php/ventas/listaVentas"  class="full-width">
+									<div class="navLateral-body-cl">
+										<i class="zmdi zmdi-truck"></i>
+									</div>
+									<div class="navLateral-body-cr">
+										LISTA DE VENTAS
+									</div>
+								</a>
+							</li>
+						</ul>
 					</li>
 					<li class="full-width divider-menu-h"></li>
 					<li class="full-width">
-						<a href="inventory.html" class="full-width">
+					<a href="<?php echo base_url(); ?>index.php/inventario/inventario" class="full-width">
 							<div class="navLateral-body-cl">
 								<i class="zmdi zmdi-store"></i>
 							</div>
@@ -183,40 +207,53 @@
 							</div>
 						</a>
 					</li>
+					
 					<li class="full-width divider-menu-h"></li>
 					<li class="full-width">
 						<a href="#!" class="full-width btn-subMenu">
 							<div class="navLateral-body-cl">
-								<i class="zmdi zmdi-wrench"></i>
+								<i class="zmdi zmdi-truck"></i>
 							</div>
 							<div class="navLateral-body-cr">
-								CONFIGURACIONES
+								COMPRAS
 							</div>
 							<span class="zmdi zmdi-chevron-left"></span>
 						</a>
 						<ul class="full-width menu-principal sub-menu-options">
 							<li class="full-width">
-								<a href="#!" class="full-width">
+								<a href="<?php echo base_url(); ?>index.php/compras/agregarCompras" class="full-width">
 									<div class="navLateral-body-cl">
-										<i class="zmdi zmdi-widgets"></i>
+										<i class="zmdi zmdi-card"></i>
 									</div>
 									<div class="navLateral-body-cr">
-										OPCIONES
+										NUEVA COMPRA
 									</div>
 								</a>
 							</li>
 							<li class="full-width">
-								<a href="#!" class="full-width">
+								<a href="<?php echo base_url(); ?>index.php/compras/listaCompras" class="full-width">
 									<div class="navLateral-body-cl">
-										<i class="zmdi zmdi-widgets"></i>
+										<i class="zmdi zmdi-truck"></i>
 									</div>
 									<div class="navLateral-body-cr">
-										OPCIONES
+										LISTA COMPRA
 									</div>
 								</a>
 							</li>
 						</ul>
 					</li>
+					<li class="full-width divider-menu-h"></li>
+					<li class="full-width">
+						<a href="<?php echo base_url(); ?>index.php/reportes/reportes" class="full-width btn-subMenu">
+							<div class="navLateral-body-cl">
+								<i class="zmdi zmdi-wrench"></i>
+							</div>
+							<div class="navLateral-body-cr">
+								REPORTES
+							</div>
+						</a>
+					</li>
+					
 				</ul>
 			</nav>
 		</div>

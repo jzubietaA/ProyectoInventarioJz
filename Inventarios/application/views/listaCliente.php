@@ -6,8 +6,6 @@
                     <h1 style="font-size: 30px; padding: 8px; color: #fff;">Lista de Clientes</h1>
                 </div>
                 <br>
-
-                <h1>Lista de Clientes</h1>
      
                 <div class="text-center" style="margin-bottom: 25px;">
                     <a href="<?php echo base_url(); ?>index.php/clientes/deshabilitados" class="btn btn-warning mx-2">
