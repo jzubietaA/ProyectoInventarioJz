@@ -33,7 +33,7 @@
                             <td class="mdl-data-table__cell--non-numeric"><?php echo $inventario->nombre; ?></td>
                             <td class="mdl-data-table__cell--non-numeric"><?php echo $inventario->descripcion; ?></td>
                             <td><?php echo $inventario->stock; ?></td>
-                            <td><?php echo "$" . number_format($inventario->precio, 2); ?></td>
+                            <td><?php echo "Bs " . number_format($inventario->precio, 2); ?></td>
                             <td><?php echo date('d/m/Y', strtotime($inventario->fecha_actualizacion)); ?></td>
                             <td>
                                 <a href="<?php echo site_url('inventario/editar/'.$inventario->idProducto); ?>" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">

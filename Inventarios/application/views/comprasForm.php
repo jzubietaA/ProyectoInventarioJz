@@ -26,11 +26,12 @@
                 <?php endforeach; ?>
             </select>
         </div>
-
-        <div class="form-group">
+        
+                <div class="form-group col-md-4">
             <label for="fecha">Fecha de Compra</label>
             <input type="date" name="fecha" id="fecha" class="form-control" required>
         </div>
+
 
         <h4>Detalles de la Compra</h4>
         <table class="table" id="tablaProductos">
@@ -54,10 +55,10 @@
                         </select>
                     </td>
                     <td>
-                        <input type="number" name="detalle[0][cantidad]" class="form-control cantidad" required>
+                        <input type="number" name="detalle[0][cantidad]" class="form-control cantidad" min="0" required>
                     </td>
                     <td>
-                        <input type="text" name="detalle[0][precio_unitario]" class="form-control precio_unitario" required>
+                        <input type="number" name="detalle[0][precio_unitario]" class="form-control precio_unitario" min="0" step="0.01" required>
                     </td>
                     <td>
                         <input type="text" name="detalle[0][subtotal]" class="form-control subtotal" readonly>
@@ -87,32 +88,33 @@
 
         // Función para agregar una nueva fila de producto
         $('#agregarProducto').click(function() {
-            $('#tablaProductos tbody').append(`
-                <tr>
-                    <td>
-                        <select name="detalle[${contador}][producto_id]" class="form-control" required>
-                            <option value="">Seleccionar Producto</option>
-                            <?php foreach ($productos as $producto): ?>
-                                <option value="<?= $producto->idProducto; ?>"><?= $producto->nombre; ?></option>
-                            <?php endforeach; ?>
-                        </select>
-                    </td>
-                    <td>
-                        <input type="number" name="detalle[${contador}][cantidad]" class="form-control cantidad" required>
-                    </td>
-                    <td>
-                        <input type="text" name="detalle[${contador}][precio_unitario]" class="form-control precio_unitario" required>
-                    </td>
-                    <td>
-                        <input type="text" name="detalle[${contador}][subtotal]" class="form-control subtotal" readonly>
-                    </td>
-                    <td>
-                        <button type="button" class="btn btn-danger btn-sm eliminarProducto">Eliminar</button>
-                    </td>
-                </tr>
-            `);
-            contador++;
-        });
+        $('#tablaProductos tbody').append(`
+            <tr>
+                <td>
+                    <select name="detalle[${contador}][producto_id]" class="form-control" required>
+                        <option value="">Seleccionar Producto</option>
+                        <?php foreach ($productos as $producto): ?>
+                            <option value="<?= $producto->idProducto; ?>"><?= $producto->nombre; ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </td>
+                <td>
+                    <input type="number" name="detalle[${contador}][cantidad]" class="form-control cantidad" min="0" required>
+                </td>
+                <td>
+                    <input type="number" name="detalle[${contador}][precio_unitario]" class="form-control precio_unitario" min="0" step="0.01" required>
+                </td>
+                <td>
+                    <input type="text" name="detalle[${contador}][subtotal]" class="form-control subtotal" readonly>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-danger btn-sm eliminarProducto">Eliminar</button>
+                </td>
+            </tr>
+        `);
+        contador++;
+    });
+
 
         // Función para eliminar una fila de producto
         $(document).on('click', '.eliminarProducto', function() {
