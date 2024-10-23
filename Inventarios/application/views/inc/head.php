@@ -244,7 +244,7 @@
 					</li>
 					<li class="full-width divider-menu-h"></li>
 					<li class="full-width">
-						<a href="<?php echo base_url(); ?>index.php/reportes/reportes" class="full-width btn-subMenu">
+						<a href="<?php echo base_url(); ?>index.php/reporte/reportes" class="full-width btn-subMenu">
 							<div class="navLateral-body-cl">
 								<i class="zmdi zmdi-wrench"></i>
 							</div>
